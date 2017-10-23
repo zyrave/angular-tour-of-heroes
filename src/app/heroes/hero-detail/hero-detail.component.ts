@@ -1,13 +1,14 @@
-import 'rxjs/add/operator/switchMap';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Hero } from './hero';
-import { HeroService } from './hero.service';
+import 'rxjs/add/operator/switchMap';
+
+import { Hero } from './../shared/hero.model';
+import { HeroService } from './../shared/hero.service';
 
 @Component({
-  selector: 'hero-detail',
+  selector: 'app-hero-detail',
   templateUrl: './hero-detail.component.html',
   styleUrls: ['./hero-detail.component.css']
 })
@@ -27,8 +28,15 @@ export class HeroDetailComponent implements OnInit {
   }
 
   save(): void {
+    /* Observable */
+    this.heroService.update(this.hero)
+      .subscribe(() => this.goBack());
+
+    /* Promises */
+    /*
     this.heroService.update(this.hero)
       .then(() => this.goBack());
+    */
   }
 
   goBack(): void {

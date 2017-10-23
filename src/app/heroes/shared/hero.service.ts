@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 
-import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/toPromise'; // for Promises
 
-import { Hero } from './hero';
+import { Hero } from './hero.model';
 
 @Injectable()
 export class HeroService {
@@ -12,6 +12,12 @@ export class HeroService {
 
   constructor(private http: Http) { }
 
+  private handleError(error: any): Promise<any> {
+    console.error('An error occurred', error); // for demo purposes only
+    return Promise.reject(error.message || error);
+  }
+
+  /* Promises*/
   getHeroes(): Promise<Hero[]> {
     return this.http.get(this.heroesUrl)
       .toPromise()
@@ -50,10 +56,5 @@ export class HeroService {
       .toPromise()
       .then(() => hero)
       .catch(this.handleError);
-  }
-
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
-    return Promise.reject(error.message || error);
   }
 }

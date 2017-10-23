@@ -1,0 +1,11 @@
+<header>
+  <div>
+    <h1>{{title}}</h1>
+  </div>
+  <nav>
+    <a *ngFor="let item of menuItems" [routerLink]="['/' + item.path]" routerLinkActive="active">
+      {{item.name}}
+    </a>
+  </nav>
+  <br/>
+</header>
