@@ -28,15 +28,9 @@ export class HeroDetailComponent implements OnInit {
   }
 
   save(): void {
-    /* Observable */
-    this.heroService.update(this.hero)
-      .subscribe(() => this.goBack());
-
     /* Promises */
-    /*
     this.heroService.update(this.hero)
       .then(() => this.goBack());
-    */
   }
 
   goBack(): void {
